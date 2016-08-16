@@ -11,7 +11,7 @@
 
     use Gismo\Component\Application\Context;
     use Gismo\Component\Plugin\Plugin;
-    use Gismo\Tutorial\Tutorial1\Context\Homepage\HomepageContext;
+    use Gismo\TutorialBasic1\Context\Homepage\HomepageContext;
 
     class HomepagePlugin implements Plugin {
 
@@ -22,7 +22,7 @@
                 $context["page.mainLayout"][0] = $context->templateFile(__DIR__ . "/Tpl/MainLayout.tpl.html");
 
                 $context->route->add("/", function () use ($context) {
-                    echo $context["page.mainLayout"]();
+                    echo $context["page.mainLayout"](["title" => "Ein toller Titel"]);
                 });
 
             }

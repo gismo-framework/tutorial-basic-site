@@ -6,25 +6,14 @@
  * Time: 23:31
  */
 
-require __DIR__ . "/../../../vendor/autoload.php";
-require __DIR__ . "/../../../../gismo/vendor/autoload.php";
+    require __DIR__ . "/../vendor/autoload.php";
+    require __DIR__ . "/../../gismo/vendor/autoload.php";
 
-ini_set("display_errors", 1);
+    ini_set("display_errors", 1);
 
+    \Gismo\Component\PhpFoundation\Helper\ErrorHandler::UseHttpErrorHandler();
 
+    $request = \Gismo\Component\HttpFoundation\Request\RequestFactory::BuildFromEnv();
 
-$context = new \Gismo\Tutorial\Context\Frontend\FrontendContext();
-
-$plugin = new \Gismo\Tutorial\Plugin\Homepage\HomepagePlugin();
-$plugin->onContextInit($context);
-
-
-$plugin = new \Gismo\Tutorial\Plugin\Guestbook\GuestbookPlugin();
-$plugin->onContextInit($context);
-
-
-$request = \Gismo\Component\HttpFoundation\Request\RequestFactory::BuildFromEnv();
-$routeRequest = \Gismo\Component\Route\Type\RouterRequest::BuildFromRequest($request);
-
-
-$context->route->dispatch($routeRequest);
+    $app = new \Gismo\TutorialBasic1\App\HomepageApp();
+    $app->run($request);
