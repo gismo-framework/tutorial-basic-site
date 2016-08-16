@@ -52,8 +52,6 @@
 
 
                 $context->route->add("GET@/api/product/:id", function ($§§parameters, Request $request) use ($context) {
-
-
                     $ret = $context["api.product.get"]($§§parameters);
                     echo json_encode($ret);
 
